@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TaskFlow – Task Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1>TaskFlow</h1>
+    <button id="addBtn" class="btn primary">+ New Task</button>
+  </header>
+
+  <main>
+    <section class="filters">
+      <input id="search" type="search" placeholder="Search tasks..." aria-label="Search tasks" />
+      <select id="statusFilter" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option value="todo">To do</option>
+        <option value="in_progress">In progress</option>
+        <option value="done">Done</option>
+      </select>
+      <select id="priorityFilter" aria-label="Filter by priority">
+        <option value="">All priorities</option>
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </section>
+
+    <div id="error" class="error" role="alert" hidden></div>
+    <div id="loading" class="loading" hidden><span class="spinner"></span> Loading...</div>
+    <div id="empty" class="empty" hidden>No tasks found.</div>
+
+    <section id="list" class="grid"></section>
+
+    <nav class="pagination" id="pagination" aria-label="Pagination">
+      <button id="prev" class="btn">← Prev</button>
+      <span id="pageInfo"></span>
+      <button id="next" class="btn">Next →</button>
+    </nav>
+  </main>
+
+  <dialog id="dialog">
+    <form id="form" method="dialog">
+      <h2 id="dialogTitle">New Task</h2>
+      <label>Title
+        <input id="title" maxlength="100" required />
+      </label>
+      <label>Description
+        <textarea id="description" rows="3" maxlength="500"></textarea>
+      </label>
+      <div class="row">
+        <label>Status
+          <select id="status">
+            <option value="todo">To do</option>
+            <option value="in_progress">In progress</option>
+            <option value="done">Done</option>
+          </select>
+        </label>
+        <label>Priority
+          <select id="priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </label>
+      </div>
+      <div id="formError" class="error" hidden></div>
+      <div class="actions">
+        <button type="button" id="cancel" class="btn">Cancel</button>
+        <button type="submit" id="save" class="btn primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
